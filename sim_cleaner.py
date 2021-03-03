@@ -1,23 +1,18 @@
-import csv
 import json
 import argparse
 from parameters import fields_to_pop, fields_to_format_date, fields_to_int, fields_to_rename
+from file_reader import read_file
 from datetime import datetime
 
 
 def clean_data(input_filename):
-    d = _csv_to_dict(input_filename)
+    d = read_file(input_filename)
     only_non_fetal = _filter_by_kv(d, "TIPOBITO", "2")
     clean_data = _pop_fields(only_non_fetal, fields_to_pop)
     clean_data = _change_to_int(clean_data, fields_to_int)
     clean_data = _format_date(clean_data, fields_to_format_date)
     clean_data = _rename_fields(clean_data, fields_to_rename)
     return clean_data
-
-
-def _csv_to_dict(filename):
-    with open(filename, 'r') as data:
-        return [i for i in csv.DictReader(data)]
 
 
 def _filter_by_kv(data, k, v):
@@ -69,4 +64,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     data = clean_data(args.input)
     save_results(args.output, data)
-    print('Successfully cleaned {} record(s)'.format(len(data)))
+    print('Successfully cleaned {} record(s) to file: {}'.format(len(data), args.output))
