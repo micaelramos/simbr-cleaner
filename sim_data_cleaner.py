@@ -1,16 +1,17 @@
 import csv
 import json
+import argparse
 from parameters import fields_to_pop, fields_to_format_date, fields_to_int, fields_to_rename
 from datetime import datetime
 
 
-def clean_data(filename):
-    d = _csv_to_dict(filename)
+def clean_data(input_filename):
+    d = _csv_to_dict(input_filename)
     only_non_fetal = _filter_by_kv(d, "TIPOBITO", "2")
     clean_data = _pop_fields(only_non_fetal, fields_to_pop)
-    clean_data = _rename_fields(clean_data, fields_to_rename)
     clean_data = _change_to_int(clean_data, fields_to_int)
     clean_data = _format_date(clean_data, fields_to_format_date)
+    clean_data = _rename_fields(clean_data, fields_to_rename)
     return clean_data
 
 
@@ -56,11 +57,16 @@ def _format_date(data, fields):
     return data
 
 
-def _map(data, mapping):
-
+def save_results(filename, result_data):
+    with open(filename, 'w+') as file:
+        json.dump(result_data, file)
 
 
 if __name__ == '__main__':
-    data = clean_data('2019.csv')
-    with open('cleaned_2019.json', 'w') as file:
-        json.dump(data, file)
+    parser = argparse.ArgumentParser(description='SIM Data Cleaner.')
+    parser.add_argument('-i', dest='input', help='Input file path (CSV format)')
+    parser.add_argument('-o', dest='output', help='Output file path (JSON format)')
+    args = parser.parse_args()
+    data = clean_data(args.input)
+    save_results(args.output, data)
+    print('Successfully cleaned {} record(s)'.format(len(data)))
