@@ -39,9 +39,6 @@ and further dataset information can be found at Fiocruz website:
 https://bigdata-metadados.icict.fiocruz.br/dataset/sistema-de-informacoes-de-mortalidade-sim
 
 
-## Parameters
-The 
-
 ## Why this project exists?
 
 The increasing public interest on mortality data due to the global COVID-19 pandemic was a motivation to enable
