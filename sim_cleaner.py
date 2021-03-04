@@ -8,6 +8,7 @@ from datetime import datetime
 def clean_data(input_filename):
     d = read_file(input_filename)
     only_non_fetal = _filter_by_kv(d, "TIPOBITO", "2")
+    # TODO: consider currying for cleanining functions...
     clean_data = _pop_fields(only_non_fetal, fields_to_pop)
     clean_data = _change_to_int(clean_data, fields_to_int)
     clean_data = _format_date(clean_data, fields_to_format_date)

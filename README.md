@@ -31,7 +31,7 @@ Sample output:
 [{"death_date": "2019-12-09T00:00:00", "death_time": "2210", "country_of_origin": "829", "city_code": "290280", "birth_date": "1930-05-11T00:00:00", "ethnicity": "4", "marital_status": "3", "education_level": "1", "occupation": "999993", "city_of_residence": "290280", "place_of_death": "1", "city_of_death": "290280", "was_medically_assisted": "", "had_surgery": "", "is_confirmed_by_autopsy": "", "cause_of_death": "I219", "death_condition": "", "was_work_related": "", "info_source": "", "original_cause_of_death": "I219", "was_investigated": "", "age": 489, "gender": "1"}]
 ```
 
-## Data Dictionaries and other info
+## Data Dictionaries and Other Info
 
 The SIM specific data dictionaries are also included on folder "SIM_data_dicts", original files for the dictionaries
 and further dataset information can be found at Fiocruz website:
@@ -39,7 +39,11 @@ and further dataset information can be found at Fiocruz website:
 https://bigdata-metadados.icict.fiocruz.br/dataset/sistema-de-informacoes-de-mortalidade-sim
 
 
+## Parameters
+The 
+
 ## Why this project exists?
 
-The increasing public interest on mortality due to the global COVID-19 pandemic has motivated me enable, this project aims to enable research and 
-data mining on brazilian mortality by cleaning the data for old systems to an updated data format.
+The increasing public interest on mortality data due to the global COVID-19 pandemic was a motivation to enable
+research in this matter. Considering that government system's data is not friendly to be directly mined, 
+this project aims to make life easier for everyone who might want to work with SIM datasets.
